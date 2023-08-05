@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Fil Upload</title>
+    <title>File Upload</title>
     <!-- <link rel="stylesheet" href="css/menu.css" type="text/css"> -->
 </head>
 <body>
