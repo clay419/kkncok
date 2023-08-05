@@ -13,12 +13,13 @@
     $username = $_POST['name'];
     $userid = $_POST['id'];
     $userpw = $_POST['pw'];
-    // $sql1 = "SELECT * From userdata WHERE id='$userid' or name='$username'";
-    // $result1 = mysqli_query($connect, $sql1);
-    // if($board = mysqli_fetch_array($result)){
-    //     echo "<script>alert(\"userid or username is already exist!\")</script>";
-    //     echo "<script>location.replace('register.php');</script>";
-    // }
+    $sql1 = "SELECT * FROM userdata WHERE id='$userid' or name='$username'";
+    $result1 = mysqli_query($connect, $sql1);
+    if($row = mysqli_fetch_row($result1)){
+        echo "<script>alert(\"userid or username is already exist!\")</script>";
+        echo "<script>location.replace('register.php');</script>";
+        exit;
+    }
     $sql = "INSERT INTO userdata (id, pw, name) VALUES ('$userid', '$userpw', '$username')";
     $result = mysqli_query($connect, $sql);
     if($result) {
