@@ -13,7 +13,7 @@
         $sql = "SELECT * FROM topic WHERE id=".$_GET['id'];
         $result = mysqli_query($connect, $sql);
         $board = mysqli_fetch_array($result);
-        echo '<h1>'.$board['title'].'</h1><h4>['.$board['created'].'  by '.$board['name'].']<hr></h4><h3>'.$board['description'].'</h3>';
+        echo '<h1>'.htmlentities($board['title']).'</h1><h4>['.$board['created'].'  by '.htmlentities($board['name']).']<hr></h4><h3>'.htmlentities($board['description']).'</h3>';
         if($_SESSION['username'] == $board['name']){
             echo "<button onclick=\"location.href='delete.php?id=".$_GET['id']."'\">DELETE</button>";
             echo "<button onclick=\"location.href='edit.php?id=".$_GET['id']."'\">EDIT</button>";
@@ -35,9 +35,9 @@
     if ($result = mysqli_query($connect, $sql)) {
         while ($row = mysqli_fetch_row($result)) {
             echo "<hr>";
-            echo $row[0];
+            echo htmlentities($row[0]);
             echo "  ";
-            echo $row[2];
+            echo htmlentities($row[2]);
             if($row[0] == $_SESSION['username']){
                 echo "
                 <form action='reply_edit.php' method='post'>
@@ -52,7 +52,8 @@
                 </form>
                 ";
             }
-            echo "<h4>".$row[1]."</h4>";
+            
+            echo "<h4>".htmlentities($row[1])."</h4>";
             
         }
     }
