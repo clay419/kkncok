@@ -117,7 +117,7 @@ function getparam($or){
         
         $result = mysqli_query($connect, $sql);
         while($board = mysqli_fetch_array($result)){ 
-            echo "<tr><td>".$board['id']."</td><td><a href='topic.php?id=".$board['id']."'>".$board['title']."</a></td><td>".$board['name']."</td><td>".$board['created']."</td></tr>";
+            echo "<tr><td>".$board['id']."</td><td><a href='topic.php?id=".$board['id']."'>".htmlentities($board['title'])."</a></td><td>".htmlentities($board['name'])."</td><td>".$board['created']."</td></tr>";
         }
     ?>
     </tbody>
