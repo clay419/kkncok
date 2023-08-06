@@ -8,9 +8,9 @@
     <?php
         session_start();
         include 'dbinfo.php';
-    
+        $id = addslashes($_GET['id']);
         $connect = new mysqli($servername, $user, $password, $dbname);
-        $sql = "SELECT * FROM topic WHERE id=".$_GET['id'];
+        $sql = "SELECT * FROM topic WHERE id=".$id;
         $result = mysqli_query($connect, $sql);
         $board = mysqli_fetch_array($result);
         echo '<h1>'.htmlentities($board['title']).'</h1><h4>['.$board['created'].'  by '.htmlentities($board['name']).']<hr></h4><h3>'.htmlentities($board['description']).'</h3>';
@@ -31,7 +31,7 @@
         <button type="submit">reply</button>
     </form>
     <?php
-    $sql = "SELECT name, content, date, idx from reply where topic=".$_GET['id'];
+    $sql = "SELECT name, content, date, idx from reply where topic=".$id;
     if ($result = mysqli_query($connect, $sql)) {
         while ($row = mysqli_fetch_row($result)) {
             echo "<hr>";
