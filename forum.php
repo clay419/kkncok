@@ -83,7 +83,8 @@ function getparam($or){
                     break;
             }
             if($opt != NULL){
-                $sql .= " WHERE {$opt} like '%{$_GET['keyword']}%'";
+                $keyword = addslashes($_GET['keyword']);
+                $sql .= " WHERE {$opt} like '%{$keyword}%'";
             }
         }
         switch($_GET['orderby']){
