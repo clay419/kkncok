@@ -18,8 +18,11 @@
    $sql = "SELECT * FROM userdata WHERE id = '$userid' AND pw = '$userpw'";
    $result = mysqli_query($connect, $sql);
    if($row = mysqli_fetch_array($result)){
-      $_SESSION['username'] = $row['name'];
-      echo "<script>location.replace('forum.php');</script>";
+      if($row['pw'] == $userpw){
+         $_SESSION['username'] = $row['name'];
+         echo "<script>location.replace('forum.php');</script>";
+      }
+      "<script>alert('login fail : check your id or password');</script>";
    }
    echo "<script>alert('login fail : check your id or password');</script>";
    echo "<script>location.replace('forum.php');</script>";
